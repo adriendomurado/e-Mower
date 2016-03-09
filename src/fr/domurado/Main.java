@@ -10,6 +10,7 @@ public class Main {
         Lawn lawn = FileReader.readFile("test.txt");
         for (Mower mower : lawn.getMowerList()) {
             mower.move(lawn.getLength(), lawn.getWidth());
+            System.out.println(mower);
         }
     }
 }

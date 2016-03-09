@@ -145,10 +145,6 @@ public class Mower {
 
     @Override
     public String toString() {
-        return "Mower{" +
-                "x=" + x +
-                ", y=" + y +
-                ", orientation=" + orientation +
-                '}';
+        return String.format("%d %d %s", getX(), getY(), getOrientation());
     }
 }
