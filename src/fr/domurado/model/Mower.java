@@ -1,7 +1,5 @@
 package fr.domurado.model;
 
-import java.util.List;
-
 /**
  * Represents a Mower
  */
@@ -14,9 +12,6 @@ public class Mower {
     private Orientation orientation;
 
     private char[] instructions;
-
-    public Mower() {
-    }
 
     public Mower(int x, int y, Orientation orientation, char[] instructions) {
         this.x = x;
@@ -55,5 +50,105 @@ public class Mower {
 
     public void setInstructions(char[] instructions) {
         this.instructions = instructions;
+    }
+
+    public void move(int boundaryX, int boundaryY) {
+        for (char instruction : instructions) {
+            switch (instruction) {
+                case 'A':
+                    goForward(boundaryX, boundaryY);
+                    break;
+                case 'G':
+                    turnLeft();
+                    break;
+                case 'D':
+                    turnRight();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void turnRight() {
+        switch (orientation) {
+            case N:
+                setOrientation(Orientation.E);
+                break;
+            case E:
+                setOrientation(Orientation.S);
+                break;
+            case W:
+                setOrientation(Orientation.N);
+                break;
+            case S:
+                setOrientation(Orientation.W);
+                break;
+        }
+    }
+
+    private void turnLeft() {
+        switch (orientation) {
+            case N:
+                setOrientation(Orientation.W);
+                break;
+            case E:
+                setOrientation(Orientation.N);
+                break;
+            case W:
+                setOrientation(Orientation.S);
+                break;
+            case S:
+                setOrientation(Orientation.E);
+                break;
+        }
+    }
+
+    private void goForward(int boundaryX, int boundaryY) {
+        switch (orientation) {
+            case N:
+                if (getY() + 1 > boundaryY) {
+                    // we try to go out of the lawn
+                    System.err.println("Move not executed, mower tried to go from (" + getX() + "," + getY() + ") to (" + getX() + "," + (getY() + 1) + "), which is out of bounds.");
+                } else {
+                    setY(getY() + 1);
+                }
+                break;
+            case E:
+                if (getX() + 1 > boundaryX) {
+                    // we try to go out of the lawn
+                    System.err.println("Move not executed, mower tried to go from (" + getX() + "," + getY() + ") to (" + (getX() + 1) + "," + getY() + "), which is out of bounds.");
+                } else {
+                    setX(getX() + 1);
+                }
+                break;
+            case W:
+                if (getX() - 1 < 0) {
+                    // we try to go out of the lawn
+                    System.err.println("Move not executed, mower tried to go from (" + getX() + "," + getY() + ") to (" + (getX() - 1) + "," + getY() + "), which is out of bounds.");
+                } else {
+                    setX(getX() - 1);
+                }
+                break;
+            case S:
+                if (getY() - 1 < 0) {
+                    // we try to go out of the lawn
+                    System.err.println("Move not executed, mower tried to go from (" + getX() + "," + getY() + ") to (" + getX() + "," + (getY() - 1) + "), which is out of bounds.");
+                } else {
+                    setY(getY() - 1);
+                }
+                break;
+            default:
+                System.err.println("Unknown orientation " + orientation + " ! Error in configuration file");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Mower{" +
+                "x=" + x +
+                ", y=" + y +
+                ", orientation=" + orientation +
+                '}';
     }
 }

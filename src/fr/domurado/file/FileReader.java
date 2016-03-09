@@ -26,7 +26,7 @@ public class FileReader {
                 if (nbLines == 1) {
                     // reading the definition of the lawn
                     lawn.setLength(scanner.nextInt());
-                    lawn.setHeight(scanner.nextInt());
+                    lawn.setWidth(scanner.nextInt());
                 } else if (nbLines % 2 == 0) {
                     // reading the initial position & orientation of mower
                     int x = scanner.nextInt();
