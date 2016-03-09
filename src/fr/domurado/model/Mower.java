@@ -53,7 +53,7 @@ public class Mower {
     }
 
     public void move(int boundaryX, int boundaryY) {
-        for (char instruction : instructions) {
+        for (char instruction : getInstructions()) {
             switch (instruction) {
                 case 'A':
                     goForward(boundaryX, boundaryY);
@@ -65,7 +65,7 @@ public class Mower {
                     turnRight();
                     break;
                 default:
-                    break;
+                    throw new IllegalArgumentException("Instruction not valid: " + instruction + ". Problem likely in config file.");
             }
         }
     }
@@ -138,8 +138,6 @@ public class Mower {
                     setY(getY() - 1);
                 }
                 break;
-            default:
-                System.err.println("Unknown orientation " + orientation + " ! Error in configuration file");
         }
     }
 

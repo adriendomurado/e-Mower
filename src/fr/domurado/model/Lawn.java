@@ -18,12 +18,6 @@ public class Lawn {
         mowerList = new ArrayList<>();
     }
 
-    public Lawn(int length, int width) {
-        this.length = length;
-        this.width = width;
-        mowerList = new ArrayList<>();
-    }
-
     public int getLength() {
         return length;
     }

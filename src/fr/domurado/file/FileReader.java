@@ -1,5 +1,6 @@
 package fr.domurado.file;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
 import fr.domurado.model.Lawn;
 import fr.domurado.model.Mower;
 import fr.domurado.model.Orientation;
@@ -47,8 +48,7 @@ public class FileReader {
                             orientation = Orientation.S;
                             break;
                         default:
-                            orientation = Orientation.N;
-                            break;
+                            throw new IllegalArgumentException("Orientation not valid: " + orientationString + ". Problem likely in config file.");
                     }
 
                     scanner.nextLine();

@@ -28,4 +28,9 @@ public class FileReaderTest {
         Assert.assertEquals(3, mower2.getY());
         Assert.assertEquals(Orientation.E, mower2.getOrientation());
     }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testReadFileErrorInOrientation() throws Exception {
+        FileReader.readFile("test_error.txt");
+    }
 }
